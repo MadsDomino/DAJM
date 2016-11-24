@@ -10,7 +10,7 @@ namespace ConsoleApplication1
 {
     public class SQLConnection
     {
-        private static string connectionstring = "server=ealb1.eal.local; Database=ejl04_db; User Id=ejl04_usr; Password=Baz1nga4;";
+        private static string connectionstring = "server=ealdb1.eal.local; Database= ejl04_db; User Id=ejl04_usr; Password=Baz1nga4;";
         SqlConnection SqlCon = new SqlConnection(connectionstring);
 
         public void LogIn()
@@ -22,8 +22,31 @@ namespace ConsoleApplication1
                 catch (SqlException errormessage)
                 {
                     Console.WriteLine("Error when logging in: " + errormessage);
-                    Console.ReadLine();
                 }
+        }
+
+        public void LogOut()
+        {
+            try
+            {
+                SqlCon.Close();
+            }
+            catch (SqlException errormessage)
+            {
+                Console.WriteLine("Error when logging out: " + errormessage);
+            }
+        }
+
+        public bool LoggedIn()
+        {
+            if (SqlCon.State == ConnectionState.Open)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void AddStudent(string Efternavn, string Fornavn, string Klasse)
@@ -40,7 +63,6 @@ namespace ConsoleApplication1
             catch (SqlException errormessage)
             {
                 Console.WriteLine("Error When Executing 'AddStudent': " + errormessage);
-                Console.ReadLine();
             }
         }
 
