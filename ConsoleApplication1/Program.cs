@@ -10,34 +10,19 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        DatabaseProcedures DatabaseProcedures = new DatabaseProcedures();
-        private static string connectionstring = "server=ealb1.eal.local; Database=ejl04_db; User Id=ejl04_usr; Password=Baz1nga4;";
+        SQLConnection SQLCon = new SQLConnection();
 
         static void Main(string[] args)
         {
-            Program prog = new ConsoleApplication1.Program();
-            prog.Run();
+            Program Prog = new Program();
+            Prog.Run();
         }
 
 
         private void Run()
         {
-            using (SqlConnection SqlCon = new SqlConnection(connectionstring))
-            {
-                try
-                {
-                    SqlCon.Open();
-                    DatabaseProcedures.AddStudent(SqlCon, "Larsen", "Jonas", "DatamatikerA");
-                }
-                catch (SqlException e)
-                {
-                    Console.WriteLine("UPS " + e);
-                }
-
-                Console.ReadLine();
-
-            }
-
+            SQLCon.LogIn();
+            SQLCon.AddStudent("Efternavn", "Fornavn", "Klasse");
         }
     }
 }
