@@ -25,6 +25,7 @@ namespace ConsoleApplication1
             bool running = true;
             while(running)
             {
+                Console.WriteLine("Main Menu");
                 string userInput = Console.ReadLine();
                 CCommand.InputReader(userInput, SQLCon);
                 if (userInput == "close")
@@ -32,10 +33,6 @@ namespace ConsoleApplication1
                     running = false;
                 }
             }
-            //SQLCon.LogIn();
-            //SQLCon.AddStudent("Efternavn", "Fornavn", "Klasse");
-            //Console.WriteLine("Complete!");
-            //Console.ReadLine();
         }
     }
 }

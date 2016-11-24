@@ -10,6 +10,8 @@ namespace ConsoleApplication1
     {
         public void InputReader(string userInput, SQLConnection SQLCon)
         {
+            Console.Clear();
+
             switch (userInput)
             {
                 case "login":
@@ -29,7 +31,15 @@ namespace ConsoleApplication1
                             Console.WriteLine("You are currently logged out");
                         break;
                 case "AddStudent":
+                    if(!SQLCon.LoggedIn())
+                    {
+                        Console.WriteLine("Please log in before trying to add a new student");
+                        break;
+                    }
                     AddStudent(SQLCon);
+                    break;
+                case "help":
+                    Console.WriteLine("Your current available commands are: \r\n" + " login, logout, logged in, AddStudent, close");
                     break;
                 default:
                         break;
